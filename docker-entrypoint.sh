@@ -189,7 +189,7 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 
 		file_env 'MYSQL_REPL_USER'
 		file_env 'MYSQL_REPL_PASSWORD'
-		if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
+		if [ "$MYSQL_REPL_USER" -a "$MYSQL_REPL_USER" ]; then
 		    echo "GRANT REPLICATION CLIENT,REPLICATION SLAVE ON . TO '$MYSQL_REPL_USER'@'%' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';"| "${mysql[@]}"
 		    echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 		fi
