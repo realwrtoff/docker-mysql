@@ -187,7 +187,7 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 		fi
 
-        echo "GRANT REPLICATION CLIENT,REPLICATION SLAVE ON *.* TO '$MYSQL_REPL_USER'@'%' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';"
+        echo "GRANT REPLICATION CLIENT,REPLICATION SLAVE ON *.* TO '$MYSQL_REPL_USER'@'%' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';" >/tmp/init.log
 		if [ ! -z "$MYSQL_REPL_USER" -a ! -z "$MYSQL_REPL_USER" ]; then
 		    echo "GRANT REPLICATION CLIENT,REPLICATION SLAVE ON *.* TO '$MYSQL_REPL_USER'@'%' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';"| "${mysql[@]}"
 		    echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
