@@ -175,8 +175,8 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			mysql+=( "$MYSQL_DATABASE" )
 		fi
 
-		# file_env 'MYSQL_USER'
-		# file_env 'MYSQL_PASSWORD'
+		file_env 'MYSQL_USER' 'jim'
+		file_env 'MYSQL_PASSWORD' '111111'
 		if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
 			echo "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' ;" | "${mysql[@]}"
 
@@ -187,6 +187,8 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 		fi
 
+        file_env 'MYSQL_REPL_USER' 'repluser'
+		file_env 'MYSQL_REPL_PASSWORD' 'replpass'
         if [ ! -z "$MYSQL_REPL_USER" -a ! -z "$MYSQL_REPL_PASSWORD" ]; then
 		    echo "GRANT REPLICATION CLIENT,REPLICATION SLAVE ON *.* TO '$MYSQL_REPL_USER'@'%' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';"| "${mysql[@]}"
 		    echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
