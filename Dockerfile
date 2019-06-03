@@ -72,6 +72,7 @@ RUN { \
 
 VOLUME /var/lib/mysql
 
+ADD ./my.conf /etc/mysql/conf.d/my.cnf
 COPY ./docker-entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
